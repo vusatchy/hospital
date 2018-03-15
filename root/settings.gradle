@@ -1,4 +1,0 @@
-rootProject.name = 'root'
-include 'hospitalAPIs/hospital'
-include 'hospitalAPIs/storage'
-
