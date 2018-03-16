@@ -16,4 +16,5 @@ apply plugin: 'io.spring.dependency-management'
 dependencies {
     compile('org.springframework.boot:spring-boot-starter-security')
     compile('org.springframework.boot:spring-boot-starter-web-services')
+    testCompile('org.springframework.boot:spring-boot-starter-test')
 }
