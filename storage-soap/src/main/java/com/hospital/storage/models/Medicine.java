@@ -1,16 +1,12 @@
 package com.hospital.storage.models;
 
-public class Medicine {
+public final class Medicine {
 
-    private int id;
+    private final int id;
 
-    private String name;
+    private final String name;
 
-    private String usage;
-
-    public Medicine() {
-
-    }
+    private final String usage;
 
     public Medicine(int id, String name, String usage) {
         this.id = id;
@@ -22,24 +18,12 @@ public class Medicine {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public String getUsage() {
         return usage;
-    }
-
-    public void setUsage(String usage) {
-        this.usage = usage;
     }
 
     @Override
