@@ -10,6 +10,42 @@ buildscript {
     }
 }
 
+task genJaxb {
+    ext.sourcesDir = "${buildDir}/generated-sources/jaxb"
+    ext.classesDir = "${buildDir}/classes/jaxb"
+    ext.schema = "src/main/resources/medicines.xsd"
+
+    outputs.dir classesDir
+
+    doLast() {
+        project.ant {
+            taskdef name: "xjc", classname: "com.sun.tools.xjc.XJCTask",
+                    classpath: configurations.jaxb.asPath
+            mkdir(dir: sourcesDir)
+            mkdir(dir: classesDir)
+
+            xjc(destdir: sourcesDir, schema: schema) {
+                arg(value: "-wsdl")
+                produces(dir: sourcesDir, includes: "**/*.java")
+            }
+
+            javac(destdir: classesDir, source: 1.8, target: 1.8, debug: true,
+                    debugLevel: "lines,vars,source",
+                    classpath: configurations.jaxb.asPath) {
+                src(path: sourcesDir)
+                include(name: "**/*.java")
+                include(name: "*.java")
+            }
+
+            copy(todir: classesDir) {
+                fileset(dir: sourcesDir, erroronmissingdir: false) {
+                    exclude(name: "**/*.java")
+                }
+            }
+        }
+    }
+}
+
 apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
 
@@ -17,11 +53,26 @@ configurations {
     jaxb
 }
 
+build {
+    dependsOn genJaxb
+}
+
+jar {
+    baseName = 'gs-producing-web-service'
+    version = '0.1.0'
+    from genJaxb.classesDir
+}
+
+
+
 dependencies {
     compile('org.springframework.boot:spring-boot-starter-web-services')
     testCompile('org.springframework.boot:spring-boot-starter-test')
     compile('org.springframework.boot:spring-boot-starter-jdbc')
     runtime('com.h2database:h2')
     compile('org.liquibase:liquibase-core')
+    compile("wsdl4j:wsdl4j:1.6.1")
     jaxb("com.sun.xml.bind:jaxb-xjc:2.2.4-1")
+    compile(files(genJaxb.classesDir).builtBy(genJaxb))
 }
+

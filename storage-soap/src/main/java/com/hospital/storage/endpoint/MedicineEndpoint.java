@@ -2,8 +2,8 @@ package com.hospital.storage.endpoint;
 
 import com.hospital.storage.dao.implamantanion.MedicineDaoImplementation;
 
-import com.hospital.storage.model.GetMedicineRequest;
-import com.hospital.storage.model.GetMedicineResponse;
+import model.GetMedicineRequest;
+import model.GetMedicineResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ws.server.endpoint.annotation.Endpoint;
 import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
@@ -23,8 +23,7 @@ public class MedicineEndpoint {
     @ResponsePayload
     public GetMedicineResponse getMedicineRequest(@RequestPayload GetMedicineRequest request) {
         GetMedicineResponse response = new GetMedicineResponse();
-        response.setMedicines(medicineDaoImplementationl.getMedicineByUsage(request.getName()));
-
+        response.getMedicines().addAll((medicineDaoImplementationl.getMedicineByUsage(request.getName())));
         return response;
     }
 }
