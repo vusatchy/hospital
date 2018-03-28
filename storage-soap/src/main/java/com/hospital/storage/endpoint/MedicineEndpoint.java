@@ -23,7 +23,7 @@ public class MedicineEndpoint {
     @ResponsePayload
     public GetMedicineResponse getMedicineRequest(@RequestPayload GetMedicineRequest request) {
         GetMedicineResponse response = new GetMedicineResponse();
-        response.getMedicines().addAll((medicineDaoImplementationl.getMedicineByUsage(request.getName())));
+        response.getMedicines().addAll(medicineDaoImplementationl.getMedicineByUsage(request.getName()));
         return response;
     }
 }
