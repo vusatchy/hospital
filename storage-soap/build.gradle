@@ -13,10 +13,15 @@ buildscript {
 apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
 
+configurations {
+    jaxb
+}
+
 dependencies {
     compile('org.springframework.boot:spring-boot-starter-web-services')
     testCompile('org.springframework.boot:spring-boot-starter-test')
     compile('org.springframework.boot:spring-boot-starter-jdbc')
     runtime('com.h2database:h2')
     compile('org.liquibase:liquibase-core')
+    jaxb("com.sun.xml.bind:jaxb-xjc:2.2.4-1")
 }
