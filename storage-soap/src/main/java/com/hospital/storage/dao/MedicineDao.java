@@ -2,8 +2,9 @@ package com.hospital.storage.dao;
 
 
 
+import com.hospital.storage.model.Medicine;
 import java.util.List;
-import model.Medicine;
+
 
 
 public interface MedicineDao {

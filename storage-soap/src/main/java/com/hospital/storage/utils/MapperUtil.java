@@ -1,9 +1,10 @@
 package com.hospital.storage.utils;
 
 
+import com.hospital.storage.model.Medicine;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import model.Medicine;
+
 
 
 public class MapperUtil {

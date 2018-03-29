@@ -1,6 +1,6 @@
-<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:sch="http://model" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://model" targetNamespace="http://model">
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:sch="http://model.storage.hospital.com" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://model.storage.hospital.com" targetNamespace="http://model.storage.hospital.com">
   <wsdl:types>
-    <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://model">
+    <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://model.storage.hospital.com">
       <xs:element name="getMedicineRequest">
         <xs:complexType>
           <xs:sequence>
