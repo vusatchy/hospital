@@ -14,7 +14,7 @@ apply from: 'jaxb.gradle'
 build.dependsOn genJaxb
 
 jar {
-    baseName = "$baseNameValue"
+    baseName = baseNameValue
     version = '0.1.0'
     from genJaxb.classesDir
 }
