@@ -19,4 +19,5 @@ dependencies {
     compile('org.springframework.boot:spring-boot-starter-jdbc')
     runtime('com.h2database:h2')
     compile('org.liquibase:liquibase-core')
+    testCompile('org.dbunit:dbunit:2.2.3')
 }
