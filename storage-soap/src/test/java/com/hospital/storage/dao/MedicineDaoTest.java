@@ -6,7 +6,6 @@ import static org.h2.engine.Constants.UTF8;
 import com.hospital.storage.model.Medicine;
 import config.StorageSoapConfig;
 import java.io.File;
-import java.nio.charset.Charset;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
