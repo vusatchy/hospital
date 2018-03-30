@@ -1,8 +1,13 @@
 package config;
 
+import com.github.springtestdbunit.bean.DatabaseConfigBean;
 import com.hospital.storage.dao.MedicineDao;
 import com.hospital.storage.dao.implamantanion.MedicineDaoImplementation;
 
+import java.sql.SQLException;
+import org.dbunit.DatabaseUnitException;
+import org.dbunit.database.DatabaseConnection;
+import org.dbunit.database.IDatabaseConnection;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -32,6 +37,13 @@ public class StorageSoapConfig {
         dataSource.setUsername(USER);
         dataSource.setPassword(PASSWORD);
         return dataSource;
+    }
+
+    @Bean
+    @Autowired
+    public IDatabaseConnection dbUnitDatabaseConnection(DataSource dataSource)
+        throws SQLException, DatabaseUnitException {
+        return new DatabaseConnection(dataSource.getConnection());
     }
 
     @Bean
