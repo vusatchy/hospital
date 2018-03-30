@@ -6,6 +6,7 @@ import static org.h2.engine.Constants.UTF8;
 import com.hospital.storage.model.Medicine;
 import config.StorageSoapConfig;
 import java.io.File;
+import java.nio.charset.Charset;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
@@ -14,7 +15,7 @@ import java.util.stream.Collectors;
 import org.dbunit.IDatabaseTester;
 import org.dbunit.JdbcDatabaseTester;
 import org.dbunit.dataset.IDataSet;
-import org.dbunit.dataset.xml.FlatXmlDataSet;
+import org.dbunit.dataset.xml.FlatXmlDataSetBuilder;
 import org.dbunit.operation.DatabaseOperation;
 import org.h2.tools.RunScript;
 import org.junit.Assert;
@@ -48,7 +49,7 @@ public class MedicineDaoTest {
 
     @Before
     public void loadTestData() throws Exception {
-        IDataSet ids = new FlatXmlDataSet(new File(
+        IDataSet ids = new FlatXmlDataSetBuilder().build(new File(
             DATA_SET));
         IDatabaseTester databaseTester =
             new JdbcDatabaseTester(JDBC_DRIVER, JDBC_URL, USER, PASSWORD);
