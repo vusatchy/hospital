@@ -1,8 +1,9 @@
 package com.hospital.storage.dao.implamantanion;
 
 import com.hospital.storage.dao.MedicineDao;
-import com.hospital.storage.dao.utils.MapperUtil;
-import com.hospital.storage.models.Medicine;
+import com.hospital.storage.model.Medicine;
+import com.hospital.storage.utils.MapperUtil;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
