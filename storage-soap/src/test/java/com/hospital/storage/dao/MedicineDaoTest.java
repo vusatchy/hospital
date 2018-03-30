@@ -49,12 +49,12 @@ public class MedicineDaoTest {
 
     @Before
     public void loadTestData() throws Exception {
-        IDataSet ids = new FlatXmlDataSetBuilder().build(new File(
+        IDataSet dataSet = new FlatXmlDataSetBuilder().build(new File(
             DATA_SET));
         IDatabaseTester databaseTester =
             new JdbcDatabaseTester(JDBC_DRIVER, JDBC_URL, USER, PASSWORD);
         databaseTester.setSetUpOperation(DatabaseOperation.CLEAN_INSERT);
-        databaseTester.setDataSet(ids);
+        databaseTester.setDataSet(dataSet);
         databaseTester.onSetup();
     }
 
