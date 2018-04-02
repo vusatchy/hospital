@@ -7,6 +7,7 @@ import com.github.springtestdbunit.DbUnitTestExecutionListener;
 import com.github.springtestdbunit.annotation.DatabaseSetup;
 import com.hospital.storage.model.Medicine;
 import config.StorageSoapConfig;
+import java.io.File;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
@@ -24,7 +25,6 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.support.DependencyInjectionTestExecutionListener;
 
 
-
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = StorageSoapConfig.class)
 @TestExecutionListeners({DependencyInjectionTestExecutionListener.class, DbUnitTestExecutionListener.class})
@@ -33,7 +33,9 @@ public class MedicineDaoTest {
     @Autowired
     private MedicineDao medicineRepository;
 
-    private static final String SCHEMA_FILE = "src/test/resources/schema.sql";
+    private static final ClassLoader classLoader = MedicineDaoTest.class.getClassLoader();
+    private static final String SCHEMA_FILE = new File(classLoader.getResource("schema.sql").getFile())
+        .getAbsolutePath();
 
     @BeforeClass
     public static void createSchema() throws Exception {
