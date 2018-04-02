@@ -1,0 +1,6 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+    <medicines id="1" name="Somethingprohen" usage="Tired"/>
+    <medicines id="2" name="Analgin" usage="Flu"/>
+    <medicines id="3" name="Antibiotik" usage="Tired"/>
+</dataset>
