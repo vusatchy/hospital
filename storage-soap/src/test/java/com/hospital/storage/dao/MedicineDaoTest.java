@@ -34,8 +34,7 @@ public class MedicineDaoTest {
     private MedicineDao medicineRepository;
 
     private static final ClassLoader classLoader = MedicineDaoTest.class.getClassLoader();
-    private static final String SCHEMA_FILE = new File(classLoader.getResource("schema.sql").getFile())
-        .getAbsolutePath();
+    private static final String SCHEMA_FILE = new File(classLoader.getResource("schema.sql").getFile()).getPath();
 
     @BeforeClass
     public static void createSchema() throws Exception {
