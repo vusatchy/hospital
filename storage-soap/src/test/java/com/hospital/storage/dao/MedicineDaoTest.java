@@ -21,7 +21,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestExecutionListeners;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import javax.sql.DataSource;
 import org.springframework.test.context.support.DependencyInjectionTestExecutionListener;
 
 
@@ -34,9 +33,6 @@ public class MedicineDaoTest {
     @Autowired
     private MedicineDao medicineRepository;
 
-    @Autowired
-    private DataSource dataSource;
-
     private static final String SCHEMA_FILE = "src/test/resources/schema.sql";
 
     @BeforeClass
@@ -48,7 +44,7 @@ public class MedicineDaoTest {
     @DatabaseSetup("/dataset.xml")
     public void testMedicineDao() {
         List<Medicine> medicines = medicineRepository.getMedicineByUsage("Tired");
-        Set<Integer> ids = new HashSet<>(Arrays.asList(1, 3));
-        Assert.assertEquals(ids, medicines.stream().map(Medicine::getId).collect(Collectors.toSet()));
+        Set<String> ids = new HashSet<>(Arrays.asList("Somethingprohen", "Antibiotik"));
+        Assert.assertEquals(ids, medicines.stream().map(Medicine::getName).collect(Collectors.toSet()));
     }
 }
