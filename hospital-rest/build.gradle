@@ -10,12 +10,22 @@ buildscript {
     }
 }
 
+apply from: 'jaxb.gradle'
+build.dependsOn genJaxb
+
+jar {
+    baseName = baseNameValue
+    version = '0.1.0'
+    from genJaxb.classesDir
+}
+
 apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
 
 dependencies {
-    compile('org.springframework.boot:spring-boot-starter-security')
     compile('org.springframework.boot:spring-boot-starter-web-services')
+    compile("wsdl4j:wsdl4j:1.6.1")
     testCompile('org.springframework.boot:spring-boot-starter-test')
-
+    jaxb("com.sun.xml.bind:jaxb-xjc:2.2.4-1")
+    compile(files(genJaxb.classesDir).builtBy(genJaxb))
 }
