@@ -1,4 +1,3 @@
 task generateClient(type: Exec) {
-    commandLine 'wsimport','-d', "$projectDir" + "\\src\\main\\java" ,'-keep' ,'-p', 'com.thejavageek.client','http://www-inf.int-evry.fr/cours/WebServices/TP_BPEL/files/PingPong.wsdl'
-
+    commandLine 'wsimport','-d', "$projectDir" + "\\src\\main\\java" ,'-keep' ,'-p', 'com.hospital.soap.client','http://localhost:8082/ws/medicines.wsdl'
 }
