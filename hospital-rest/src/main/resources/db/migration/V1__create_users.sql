@@ -1,0 +1,7 @@
+DROP TABLE IF EXISTS users;
+CREATE TABLE if NOT EXISTS users (
+	id INT,
+	name VARCHAR,
+	mail VARCHAR,
+	PRIMARY KEY (id)
+)
