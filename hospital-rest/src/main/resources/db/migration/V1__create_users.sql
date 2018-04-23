@@ -1,7 +1,7 @@
-DROP TABLE IF EXISTS users;
 CREATE TABLE if NOT EXISTS users (
-	id INT,
+	id BIGINT AUTO_INCREMENT,
 	name VARCHAR,
 	mail VARCHAR,
+	role VARCHAR,
 	PRIMARY KEY (id)
 )

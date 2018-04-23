@@ -19,16 +19,25 @@ public class User implements Serializable {
     @Column(name = "name")
     private String name;
 
+    @Column(name = "role")
+    private String role;
+
     @Column(name = "mail")
     private String mail;
+
+    //TODO: Try something like
+    //TODO: @OneToMany(mappedBy = role.equals("ROLE_PATIENT") ? patient_id : doctor_id ")
+    //TODO: List<Meeting> meetings;
+    //TODO: from here https://en.wikibooks.org/wiki/Java_Persistence/ManyToOne
 
     public User() {
 
     }
 
-    public User(int id, String name, String mail) {
+    public User(long id, String name, String role, String mail) {
         this.id = id;
         this.name = name;
+        this.role = role;
         this.mail = mail;
     }
 
@@ -48,6 +57,14 @@ public class User implements Serializable {
         this.name = name;
     }
 
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
     public String getMail() {
         return mail;
     }
@@ -58,29 +75,33 @@ public class User implements Serializable {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
+        if (this == o) return true;
+        if (!(o instanceof User)) return false;
 
         User user = (User) o;
 
-        if (id != user.id) {
-            return false;
-        }
-        if (name != null ? !name.equals(user.name) : user.name != null) {
-            return false;
-        }
-        return mail != null ? mail.equals(user.mail) : user.mail == null;
+        if (getId() != user.getId()) return false;
+        if (getName() != null ? !getName().equals(user.getName()) : user.getName() != null) return false;
+        if (getRole() != null ? !getRole().equals(user.getRole()) : user.getRole() != null) return false;
+        return getMail() != null ? getMail().equals(user.getMail()) : user.getMail() == null;
     }
 
     @Override
     public int hashCode() {
-        int result = (int) (id ^ (id >>> 32));
-        result = 31 * result + (name != null ? name.hashCode() : 0);
-        result = 31 * result + (mail != null ? mail.hashCode() : 0);
+        int result = (int) (getId() ^ (getId() >>> 32));
+        result = 31 * result + (getName() != null ? getName().hashCode() : 0);
+        result = 31 * result + (getRole() != null ? getRole().hashCode() : 0);
+        result = 31 * result + (getMail() != null ? getMail().hashCode() : 0);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", role='" + role + '\'' +
+                ", mail='" + mail + '\'' +
+                '}';
     }
 }

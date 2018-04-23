@@ -1,17 +1,8 @@
 package com.hospital.core.model;
 
+import javax.persistence.*;
 import java.io.Serializable;
 import java.sql.Timestamp;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
 
 @Entity
 @Table(name = "meetings")
@@ -120,5 +111,16 @@ public class Meeting implements Serializable {
         result = 31 * result + medicineId;
         result = 31 * result + (timestamp != null ? timestamp.hashCode() : 0);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "Meeting{" +
+                "id=" + id +
+                ", doctor=" + doctor +
+                ", patient=" + patient +
+                ", medicineId=" + medicineId +
+                ", timestamp=" + timestamp +
+                '}';
     }
 }
