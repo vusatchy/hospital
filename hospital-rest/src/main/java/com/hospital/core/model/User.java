@@ -2,8 +2,12 @@ package com.hospital.core.model;
 
 import java.io.Serializable;
 import java.util.List;
+import javax.persistence.Access;
+import javax.persistence.AccessType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -12,6 +16,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "users")
+@Access(AccessType.FIELD)
 public class User implements Serializable {
 
     @Id
@@ -21,8 +26,8 @@ public class User implements Serializable {
     @Column(name = "name")
     private String name;
 
-    @Column(name = "role")
-    private String role;
+    @Enumerated(EnumType.STRING)
+    private Role role;
 
     @Column(name = "mail")
     private String mail;
@@ -34,7 +39,7 @@ public class User implements Serializable {
 
     }
 
-    public User(long id, String name, String role, String mail, List<Meeting> meetingList) {
+    public User(long id, String name, Role role, String mail, List<Meeting> meetingList) {
         this.id = id;
         this.name = name;
         this.role = role;
@@ -58,11 +63,12 @@ public class User implements Serializable {
         this.name = name;
     }
 
-    public String getRole() {
+
+    public Role getRole() {
         return role;
     }
 
-    public void setRole(String role) {
+    public void setRole(Role role) {
         this.role = role;
     }
 
@@ -99,7 +105,7 @@ public class User implements Serializable {
         if (name != null ? !name.equals(user.name) : user.name != null) {
             return false;
         }
-        if (role != null ? !role.equals(user.role) : user.role != null) {
+        if (role != user.role) {
             return false;
         }
         if (mail != null ? !mail.equals(user.mail) : user.mail != null) {

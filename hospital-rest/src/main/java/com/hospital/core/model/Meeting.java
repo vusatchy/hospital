@@ -21,7 +21,7 @@ public class Meeting implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    @ManyToOne(fetch=FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name="doctor_id")
     private User doctor;
 
