@@ -27,6 +27,7 @@ public class User implements Serializable {
     private String name;
 
     @Enumerated(EnumType.STRING)
+    @Column(name = "role")
     private Role role;
 
     @Column(name = "mail")
