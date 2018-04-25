@@ -1,5 +1,5 @@
-CREATE TABLE if NOT EXISTS meetings (
-	id BIGINT AUTO_INCREMENT,
+CREATE TABLE meetings (
+	id BIGSERIAL ,
 	doctor_id BIGINT,
 	patient_id BIGINT,
 	id_of_medicine INT,

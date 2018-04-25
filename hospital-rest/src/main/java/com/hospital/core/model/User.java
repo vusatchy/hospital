@@ -1,11 +1,13 @@
 package com.hospital.core.model;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -25,20 +27,19 @@ public class User implements Serializable {
     @Column(name = "mail")
     private String mail;
 
-    //TODO: Try something like
-    //TODO: @OneToMany(mappedBy = role.equals("ROLE_PATIENT") ? patient_id : doctor_id ")
-    //TODO: List<Meeting> meetings;
-    //TODO: from here https://en.wikibooks.org/wiki/Java_Persistence/ManyToOne
+    @OneToMany(mappedBy = "doctor")
+    private List<Meeting> meetingList;
 
     public User() {
 
     }
 
-    public User(long id, String name, String role, String mail) {
+    public User(long id, String name, String role, String mail, List<Meeting> meetingList) {
         this.id = id;
         this.name = name;
         this.role = role;
         this.mail = mail;
+        this.meetingList = meetingList;
     }
 
     public long getId() {
@@ -73,35 +74,59 @@ public class User implements Serializable {
         this.mail = mail;
     }
 
+    public List<Meeting> getMeetingList() {
+        return meetingList;
+    }
+
+    public void setMeetingList(List<Meeting> meetingList) {
+        this.meetingList = meetingList;
+    }
+
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof User)) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
 
         User user = (User) o;
 
-        if (getId() != user.getId()) return false;
-        if (getName() != null ? !getName().equals(user.getName()) : user.getName() != null) return false;
-        if (getRole() != null ? !getRole().equals(user.getRole()) : user.getRole() != null) return false;
-        return getMail() != null ? getMail().equals(user.getMail()) : user.getMail() == null;
+        if (id != user.id) {
+            return false;
+        }
+        if (name != null ? !name.equals(user.name) : user.name != null) {
+            return false;
+        }
+        if (role != null ? !role.equals(user.role) : user.role != null) {
+            return false;
+        }
+        if (mail != null ? !mail.equals(user.mail) : user.mail != null) {
+            return false;
+        }
+        return meetingList != null ? meetingList.equals(user.meetingList) : user.meetingList == null;
     }
 
     @Override
     public int hashCode() {
-        int result = (int) (getId() ^ (getId() >>> 32));
-        result = 31 * result + (getName() != null ? getName().hashCode() : 0);
-        result = 31 * result + (getRole() != null ? getRole().hashCode() : 0);
-        result = 31 * result + (getMail() != null ? getMail().hashCode() : 0);
+        int result = (int) (id ^ (id >>> 32));
+        result = 31 * result + (name != null ? name.hashCode() : 0);
+        result = 31 * result + (role != null ? role.hashCode() : 0);
+        result = 31 * result + (mail != null ? mail.hashCode() : 0);
+        result = 31 * result + (meetingList != null ? meetingList.hashCode() : 0);
         return result;
     }
 
     @Override
     public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", role='" + role + '\'' +
-                ", mail='" + mail + '\'' +
-                '}';
+        final StringBuilder sb = new StringBuilder("User{");
+        sb.append("id=").append(id);
+        sb.append(", name='").append(name).append('\'');
+        sb.append(", role='").append(role).append('\'');
+        sb.append(", mail='").append(mail).append('\'');
+        sb.append(", meetingList=").append(meetingList);
+        sb.append('}');
+        return sb.toString();
     }
 }
