@@ -1,7 +1,7 @@
 package com.hospital.core.model;
 
 import java.io.Serializable;
-import java.sql.Timestamp;
+import java.time.LocalDate;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -32,9 +32,9 @@ public class Meeting implements Serializable {
     private int medicineId;
 
     @Column(name = "meeting_time")
-    private Timestamp timestamp;
+    private LocalDate timestamp;
 
-    public Meeting(long id, User doctor, User patient, int medicineId, Timestamp timestamp) {
+    public Meeting(long id, User doctor, User patient, int medicineId, LocalDate timestamp) {
         this.id = id;
         this.doctor = doctor;
         this.patient = patient;
@@ -77,11 +77,11 @@ public class Meeting implements Serializable {
         this.medicineId = medicineId;
     }
 
-    public Timestamp getTimestamp() {
+    public LocalDate getTimestamp() {
         return timestamp;
     }
 
-    public void setTimestamp(Timestamp timestamp) {
+    public void setTimestamp(LocalDate timestamp) {
         this.timestamp = timestamp;
     }
 
