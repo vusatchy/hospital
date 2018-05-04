@@ -4,9 +4,6 @@ package com.hospital.storage.dao;
 
 import com.hospital.storage.model.Medicine;
 import java.util.List;
-
-
-
 public interface MedicineDao {
 
     /**
