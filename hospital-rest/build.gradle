@@ -10,7 +10,14 @@ buildscript {
     }
 }
 
-apply from: 'jaxb.gradle'
+String host = "http://localhost:8082/ws/medicines.wsdl"
+String classesPath = "$projectDir" + "\\build\\classes\\java\\main"//"
+String projectPath = "$projectDir" + "\\src\\main\\java"
+String packageDest = "com.hospital.soap.client"
+
+task generateClient(type: Exec) {
+    commandLine 'wsimport', '-s', projectPath, '-keep', '-p', packageDest, host
+}
 build.dependsOn generateClient
 
 jar {
@@ -24,4 +31,5 @@ apply plugin: 'io.spring.dependency-management'
 dependencies {
     compile('org.springframework.boot:spring-boot-starter-web-services')
     testCompile('org.springframework.boot:spring-boot-starter-test')
+    compile(files(classesPath).builtBy(generateClient))
 }

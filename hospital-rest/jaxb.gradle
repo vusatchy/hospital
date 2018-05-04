@@ -1,3 +1,0 @@
-task generateClient(type: Exec) {
-    commandLine 'wsimport','-d', "$projectDir" + "\\src\\main\\java" ,'-keep' ,'-p', 'com.hospital.soap.client','http://localhost:8082/ws/medicines.wsdl'
-}
