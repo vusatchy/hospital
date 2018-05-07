@@ -1,6 +1,7 @@
 CREATE TABLE users (
 	id BIGSERIAL PRIMARY  KEY,
 	name VARCHAR,
+	password VARCHAR,
 	mail VARCHAR,
 	role VARCHAR
 )

@@ -1,5 +1,5 @@
 CREATE TABLE meetings (
-	id BIGSERIAL PRIMARY KEY,
+	id BIGSERIAL PRIMARY  KEY,
 	doctor_id BIGINT,
 	patient_id BIGINT,
 	id_of_medicine INT,

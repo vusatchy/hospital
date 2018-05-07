@@ -33,6 +33,9 @@ public class User implements Serializable {
     @Column(name = "mail")
     private String mail;
 
+    @Column(name = "password")
+    private String password;
+
     @OneToMany(mappedBy = "doctor")
     private List<Meeting> meetingList;
 
@@ -89,6 +92,14 @@ public class User implements Serializable {
         this.meetingList = meetingList;
     }
 
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -112,6 +123,9 @@ public class User implements Serializable {
         if (mail != null ? !mail.equals(user.mail) : user.mail != null) {
             return false;
         }
+        if (password != null ? !password.equals(user.password) : user.password != null) {
+            return false;
+        }
         return meetingList != null ? meetingList.equals(user.meetingList) : user.meetingList == null;
     }
 
@@ -121,6 +135,7 @@ public class User implements Serializable {
         result = 31 * result + (name != null ? name.hashCode() : 0);
         result = 31 * result + (role != null ? role.hashCode() : 0);
         result = 31 * result + (mail != null ? mail.hashCode() : 0);
+        result = 31 * result + (password != null ? password.hashCode() : 0);
         result = 31 * result + (meetingList != null ? meetingList.hashCode() : 0);
         return result;
     }
@@ -131,9 +146,11 @@ public class User implements Serializable {
         sb.append("id=").append(id);
         sb.append(", name='").append(name).append('\'');
         sb.append(", role='").append(role).append('\'');
+        sb.append(", password='").append(password).append('\'');
         sb.append(", mail='").append(mail).append('\'');
         sb.append(", meetingList=").append(meetingList);
         sb.append('}');
         return sb.toString();
     }
+
 }
