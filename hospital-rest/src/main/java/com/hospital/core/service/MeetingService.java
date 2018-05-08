@@ -39,7 +39,7 @@ public class MeetingService {
 	Meeting meeting = new Meeting();
 	meeting.setDoctor(doctor);
 	meeting.setPatient(patient);
-	meeting.setMedicineId(medicine.getId());
+	meeting.setMedicine(medicine.getName());
 	meeting.setTimestamp(LocalDate.now());
 	meetingRepository.save(meeting);
     }

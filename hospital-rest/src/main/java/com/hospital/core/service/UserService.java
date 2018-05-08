@@ -1,7 +1,7 @@
 package com.hospital.core.service;
 
-import com.hospital.core.authentication.AuthenticationResult;
 import com.hospital.core.authentication.AuthenticationChain;
+import com.hospital.core.authentication.AuthenticationResult;
 import com.hospital.core.authentication.NameExistAuthentication;
 import com.hospital.core.authentication.ValidEmailAuthentication;
 import com.hospital.core.authentication.ValidPasswordAuthentication;
@@ -15,13 +15,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class SignInUpService {
+public class UserService {
 
     @Autowired
     private UserRepository userRepository;
 
     //login
-    public User getSignedInUser(String name, String password) {
+    public User findUser(String name, String password) {
 	User user = userRepository.findByName(name);
 	if (user == null) {
 	    return null;
@@ -34,10 +34,10 @@ public class SignInUpService {
     }
 
     //register
-    public AuthenticationResult signUpUser(User user) {
+    public AuthenticationResult saveUser(User user) {
 	AuthenticationChain authenticationChain = new NameExistAuthentication(userRepository);
 	authenticationChain.linkWith(new ValidEmailAuthentication()).linkWith(
-		new ValidPasswordAuthentication());
+	    new ValidPasswordAuthentication());
 	try {
 	    authenticationChain.check(user);
 	} catch (InvalidPasswordException e) {
