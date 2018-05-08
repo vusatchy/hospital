@@ -19,21 +19,29 @@ public class MeetingService {
     private MedicineService medicineService;
 
 
-    public List<Meeting> findeMeetingByDoctor(User doctor){
-
+    public void updateMeeting(Meeting meeting) {
+	meetingRepository.save(meeting);
     }
 
-    public List<Meeting> findMeetingByUser(User patient){
-
+    public void deleteMeeing(Meeting meeting) {
+	meetingRepository.deleteById(meeting.getId());
     }
 
-    public void addMeeting(User doctor, User patient, Medicine medicine){
-        Meeting meeting = new Meeting();
-        meeting.setDoctor(doctor);
-        meeting.setPatient(patient);
-        meeting.setMedicineId(medicine.getId());
-        meeting.setTimestamp(LocalDate.now());
-        meetingRepository.save(meeting);
+    public List<Meeting> findeMeetingByDoctor(User doctor) {
+	return meetingRepository.findByDoctorId(doctor.getId());
+    }
+
+    public List<Meeting> findMeetingByUser(User patient) {
+	return meetingRepository.findByPatientId(patient.getId());
+    }
+
+    public void addMeeting(User doctor, User patient, Medicine medicine) {
+	Meeting meeting = new Meeting();
+	meeting.setDoctor(doctor);
+	meeting.setPatient(patient);
+	meeting.setMedicineId(medicine.getId());
+	meeting.setTimestamp(LocalDate.now());
+	meetingRepository.save(meeting);
     }
 
 }

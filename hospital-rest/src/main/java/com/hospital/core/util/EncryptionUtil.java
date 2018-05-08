@@ -5,7 +5,9 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Base64;
 
-public class EncriptionUtil {
+public class EncryptionUtil {
+
+    public final static String SHA_256_ALGORITHM = "SHA-256";
 
     public static String encrypt(String value, String algorithm) {
 	MessageDigest digest = null;
@@ -18,8 +20,8 @@ public class EncriptionUtil {
 	return Base64.getEncoder().encodeToString(hash);
     }
 
-    public static String encrypt(String value)  {
-	return encrypt(value, "SHA-256");
+    public static String encrypt(String value) {
+	return encrypt(value, SHA_256_ALGORITHM);
     }
 
 }

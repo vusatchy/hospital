@@ -17,7 +17,7 @@ public class NameExistAuthentication extends AuthenticationChain {
 
     @Override
     public void check(User user) throws UserAlreadyExistException, InvalidEmailException, InvalidPasswordException {
-	if (userRepository.findByName(user.getName()) != null) {
+	if (userRepository.existsByName(user.getName())) {
 	    throw new UserAlreadyExistException(MessageFormat.format("User with name {0} already exit",
 		user.getName()));
 	}

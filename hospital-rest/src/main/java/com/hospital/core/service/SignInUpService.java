@@ -10,7 +10,7 @@ import com.hospital.core.exceptions.InvalidPasswordException;
 import com.hospital.core.exceptions.UserAlreadyExistException;
 import com.hospital.core.model.User;
 import com.hospital.core.respository.UserRepository;
-import com.hospital.core.util.EncriptionUtil;
+import com.hospital.core.util.EncryptionUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,7 +26,7 @@ public class SignInUpService {
 	if (user == null) {
 	    return null;
 	}
-	if (user.getPassword().equals(EncriptionUtil.encrypt(password))) {
+	if (user.getPassword().equals(EncryptionUtil.encrypt(password))) {
 	    return user;
 	} else {
 	    return null;
@@ -47,7 +47,7 @@ public class SignInUpService {
 	} catch (UserAlreadyExistException e) {
 	    return AuthenticationResult.INVALID_NAME;
 	}
-	user.setPassword(EncriptionUtil.encrypt(user.getPassword()));
+	user.setPassword(EncryptionUtil.encrypt(user.getPassword()));
 	userRepository.save(user);
 	return AuthenticationResult.SUCCESS;
     }
