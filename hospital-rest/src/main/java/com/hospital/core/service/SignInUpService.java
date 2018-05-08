@@ -20,7 +20,6 @@ public class SignInUpService {
     @Autowired
     private UserRepository userRepository;
 
-
     //login
     public User getSignedInUser(String name, String password) {
 	User user = userRepository.findByName(name);
