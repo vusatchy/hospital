@@ -28,17 +28,17 @@ public class Meeting implements Serializable {
     @JoinColumn(name="patient_id")
     private User patient;
 
-    @Column(name = "id_of_medicine")
-    private int medicineId;
+    @Column(name = "medicine")
+    private String medicine;
 
     @Column(name = "meeting_time")
     private LocalDate timestamp;
 
-    public Meeting(long id, User doctor, User patient, int medicineId, LocalDate timestamp) {
+    public Meeting(long id, User doctor, User patient, String medicineId, LocalDate timestamp) {
         this.id = id;
         this.doctor = doctor;
         this.patient = patient;
-        this.medicineId = medicineId;
+        this.medicine = medicineId;
         this.timestamp = timestamp;
     }
 
@@ -69,12 +69,12 @@ public class Meeting implements Serializable {
         this.patient = patient;
     }
 
-    public int getMedicineId() {
-        return medicineId;
+    public String getMedicine() {
+        return medicine;
     }
 
-    public void setMedicineId(int medicineId) {
-        this.medicineId = medicineId;
+    public void setMedicine(String medicine) {
+        this.medicine = medicine;
     }
 
     public LocalDate getTimestamp() {
@@ -99,13 +99,13 @@ public class Meeting implements Serializable {
         if (id != meeting.id) {
             return false;
         }
-        if (medicineId != meeting.medicineId) {
-            return false;
-        }
         if (doctor != null ? !doctor.equals(meeting.doctor) : meeting.doctor != null) {
             return false;
         }
         if (patient != null ? !patient.equals(meeting.patient) : meeting.patient != null) {
+            return false;
+        }
+        if (medicine != null ? !medicine.equals(meeting.medicine) : meeting.medicine != null) {
             return false;
         }
         return timestamp != null ? timestamp.equals(meeting.timestamp) : meeting.timestamp == null;
@@ -116,7 +116,7 @@ public class Meeting implements Serializable {
         int result = (int) (id ^ (id >>> 32));
         result = 31 * result + (doctor != null ? doctor.hashCode() : 0);
         result = 31 * result + (patient != null ? patient.hashCode() : 0);
-        result = 31 * result + medicineId;
+        result = 31 * result + (medicine != null ? medicine.hashCode() : 0);
         result = 31 * result + (timestamp != null ? timestamp.hashCode() : 0);
         return result;
     }
@@ -127,7 +127,7 @@ public class Meeting implements Serializable {
         sb.append("id=").append(id);
         sb.append(", doctor=").append(doctor.getId());
         sb.append(", patient=").append(patient.getId());
-        sb.append(", medicineId=").append(medicineId);
+        sb.append(", medicine=").append(medicine);
         sb.append(", timestamp=").append(timestamp);
         sb.append('}');
         return sb.toString();
