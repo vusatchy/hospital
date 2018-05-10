@@ -1,13 +1,14 @@
 package com.hospital.core.exceptions;
 
+
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 // FIXME: add valid code @Vusach
-@ResponseStatus(value= HttpStatus.NOT_FOUND,reason = "User with such name already exist")
-public class UserAlreadyExistException extends Exception {
+@ResponseStatus(value = HttpStatus.NOT_FOUND, reason = "Invalid user name or password")
+public class PassworDoNotMatch extends Exception {
 
-    public UserAlreadyExistException(String message) {
+    public PassworDoNotMatch(String message) {
 	super(message);
     }
 }
