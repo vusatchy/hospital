@@ -20,7 +20,7 @@ task generateClient(type: Exec) {
 }
 build.dependsOn generateClient
 
-apply plugin: 'org.springframework.boot'
+apply plugin: 'org.springfram   ework.boot'
 apply plugin: 'io.spring.dependency-management'
 
 dependencies {
@@ -28,6 +28,8 @@ dependencies {
     compile('org.springframework.boot:spring-boot-starter-web')
     compile('org.springframework.boot:spring-boot-starter-data-jpa')
     compile("org.flywaydb:flyway-core")
+    compile("io.springfox:springfox-swagger2:2.8.0")
+    compile("io.springfox:springfox-swagger-ui:2.8.0")
     testCompile('org.springframework.boot:spring-boot-starter-test')
     compile(files(classesPath).builtBy(generateClient))
     runtime("org.postgresql:postgresql")
