@@ -33,13 +33,7 @@ public class UserController {
 	@RequestParam("password") String password,
 	@RequestParam("email") String email)
 	throws InvalidPasswordException, InvalidEmailException, UserAlreadyExistException {
-	User user = new User();
-	user.setName(name);
-	user.setMail(email);
-	user.setPassword(password);
-	user.setMeetingList(new ArrayList<>());
-	user.setRole(Role.PATIENT);
-	return userService.saveUser(user);
+	return userService.saveUser(name,email,password);
     }
 
 }

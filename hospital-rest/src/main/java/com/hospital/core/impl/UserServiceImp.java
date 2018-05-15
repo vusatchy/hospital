@@ -9,11 +9,12 @@ import com.hospital.core.exceptions.InvalidPasswordException;
 import com.hospital.core.exceptions.NameDoNotMatch;
 import com.hospital.core.exceptions.PassworDoNotMatch;
 import com.hospital.core.exceptions.UserAlreadyExistException;
+import com.hospital.core.model.Role;
 import com.hospital.core.model.User;
 import com.hospital.core.respository.UserRepository;
 import com.hospital.core.service.UserService;
 import com.hospital.core.util.EncryptionUtil;
-import javassist.NotFoundException;
+import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -39,7 +40,14 @@ public class UserServiceImp implements UserService {
 
     //register
     @Override
-    public User saveUser(User user) throws InvalidPasswordException, UserAlreadyExistException, InvalidEmailException {
+    public User saveUser(String name, String email, String password)
+	throws InvalidPasswordException, UserAlreadyExistException, InvalidEmailException {
+	User user = new User();
+	user.setName(name);
+	user.setMail(email);
+	user.setPassword(password);
+	user.setMeetingList(new ArrayList<>());
+	user.setRole(Role.PATIENT);
 	AuthenticationChain authenticationChain = new NameExistAuthentication(userRepository);
 	authenticationChain.linkWith(new ValidEmailAuthentication()).linkWith(
 	    new ValidPasswordAuthentication());

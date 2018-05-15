@@ -27,22 +27,26 @@ public class MeetingServiceImp implements MeetingService {
     }
 
     @Override
-    public void deleteMeeting(Meeting meeting) {
-	meetingRepository.deleteById(meeting.getId());
+    public void deleteMeeting(long id) {
+	meetingRepository.deleteById(id);
     }
 
     @Override
-    public List<Meeting> findMeetingByDoctor(User doctor) {
-	return meetingRepository.findByDoctorId(doctor.getId());
+    public List<Meeting> findMeetingByDoctor(long doctor) {
+	return meetingRepository.findByDoctorId(doctor);
     }
 
     @Override
-    public List<Meeting> findMeetingByUser(User patient) {
-	return meetingRepository.findByPatientId(patient.getId());
+    public List<Meeting> findMeetingByUser(long patientId) {
+	return meetingRepository.findByPatientId(patientId);
     }
 
     @Override
-    public Meeting addMeeting(User doctor, User patient, String medicineUsage) {
+    public Meeting addMeeting(long doctorId, long patientId, String medicineUsage) {
+	User patient = new User();
+	User doctor = new User();
+	patient.setId(patientId);
+	doctor.setId(doctorId);
 	Meeting meeting = new Meeting();
 	meeting.setDoctor(doctor);
 	meeting.setPatient(patient);
