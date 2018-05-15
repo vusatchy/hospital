@@ -1,5 +1,7 @@
 package com.hospital.core.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Access;
@@ -37,6 +39,7 @@ public class User implements Serializable {
     private String password;
 
     @OneToMany(mappedBy = "doctor")
+    @JsonBackReference
     private List<Meeting> meetingList;
 
     public User() {

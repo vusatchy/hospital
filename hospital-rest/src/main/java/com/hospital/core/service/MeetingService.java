@@ -2,20 +2,21 @@ package com.hospital.core.service;
 
 import com.hospital.core.model.Meeting;
 import com.hospital.core.model.User;
-import com.hospital.soap.client.Medicine;
 import java.util.List;
 
 
 public interface MeetingService {
 
-     void updateMeeting(Meeting meeting);
+    void updateMeeting(Meeting meeting);
 
-     void deleteMeeing(Meeting meeting);
+    void deleteMeeting(Meeting meeting);
 
-     List<Meeting> findeMeetingByDoctor(User doctor);
+    List<Meeting> findMeetingByDoctor(User doctor);
 
-     List<Meeting> findMeetingByUser(User patient);
+    List<Meeting> findMeetingByUser(User patient);
 
-     void addMeeting(User doctor, User patient, Medicine medicine);
+    Meeting addMeeting(User doctor, User patient, String medicineUsage);
+
+    List<Meeting> getAllMeeting();
 
 }

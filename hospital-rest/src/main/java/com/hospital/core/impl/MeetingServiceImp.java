@@ -5,8 +5,8 @@ import com.hospital.core.model.User;
 import com.hospital.core.respository.MeetingRepository;
 import com.hospital.core.service.MedicineService;
 import com.hospital.core.service.MeetingService;
-import com.hospital.soap.client.Medicine;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,12 +27,12 @@ public class MeetingServiceImp implements MeetingService {
     }
 
     @Override
-    public void deleteMeeing(Meeting meeting) {
+    public void deleteMeeting(Meeting meeting) {
 	meetingRepository.deleteById(meeting.getId());
     }
 
     @Override
-    public List<Meeting> findeMeetingByDoctor(User doctor) {
+    public List<Meeting> findMeetingByDoctor(User doctor) {
 	return meetingRepository.findByDoctorId(doctor.getId());
     }
 
@@ -42,12 +42,21 @@ public class MeetingServiceImp implements MeetingService {
     }
 
     @Override
-    public void addMeeting(User doctor, User patient, Medicine medicine) {
+    public Meeting addMeeting(User doctor, User patient, String medicineUsage) {
 	Meeting meeting = new Meeting();
 	meeting.setDoctor(doctor);
 	meeting.setPatient(patient);
-	meeting.setMedicine(medicine.getName());
+	meeting.setMedicine(medicineService.getMedicinesByUsage(medicineUsage).get(0).getName());
 	meeting.setTimestamp(LocalDate.now());
-	meetingRepository.save(meeting);
+	return meetingRepository.save(meeting);
     }
+
+    @Override
+    public List<Meeting> getAllMeeting() {
+	List<Meeting> meetings = new ArrayList<>();
+	meetingRepository.findAll().forEach(meetings::add);
+	return meetings;
+    }
+
+
 }

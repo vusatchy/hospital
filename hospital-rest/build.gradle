@@ -20,7 +20,7 @@ task generateClient(type: Exec) {
 }
 build.dependsOn generateClient
 
-apply plugin: 'org.springfram   ework.boot'
+apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
 
 dependencies {
