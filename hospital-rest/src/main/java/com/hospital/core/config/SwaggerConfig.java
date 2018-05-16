@@ -16,7 +16,7 @@ public class SwaggerConfig {
     public Docket postsApi() {
 	return new Docket(DocumentationType.SWAGGER_2)
 	    .select()
-	    .apis(RequestHandlerSelectors.any())
+	    .apis(RequestHandlerSelectors.basePackage("com.hospital.core.controller"))
 	    .paths(PathSelectors.any())
 	    .build();
     }
