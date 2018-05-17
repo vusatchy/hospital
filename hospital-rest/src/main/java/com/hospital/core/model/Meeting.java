@@ -1,5 +1,7 @@
 package com.hospital.core.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import java.io.Serializable;
 import java.time.LocalDate;
 import javax.persistence.Column;
@@ -22,10 +24,12 @@ public class Meeting implements Serializable {
 
     @ManyToOne
     @JoinColumn(name="doctor_id")
+    @JsonManagedReference
     private User doctor;
 
     @OneToOne
     @JoinColumn(name="patient_id")
+    @JsonManagedReference
     private User patient;
 
     @Column(name = "medicine")
