@@ -4,5 +4,5 @@ INSERT INTO users (name, password, mail, role) VALUES ( 'Dr. House','e1b778fa32c
 INSERT INTO users (name, password, mail, role) VALUES ( 'Serhii', '56e96fb212356c383105e39c9e4fac3fe7e7e02fc3084151e614f1e73c5aa5ca', 'SeRhII@gmail.com','PATIENT');
 INSERT INTO users (name, password, mail, role) VALUES ( 'Dr. Dulitle', '56e96fb212356c383105e39wfewfef02fc3084151e614f1e73c5aa5ca', 'DRDU@gmail.com','DOCTOR');
 INSERT INTO users (name, password, mail, role) VALUES ( 'Vitalii','56e96fb212356c383105e39c9e4fac3fwefewfewfwe73c5aa5ca', 'Vitlaii@gmail.com','PATIENT');
-INSERT INTO users (name, password, mail, role) VALUES ( 'Yura_Vusatc','"LJCpysWKuFLnGM7MInE3Lc+36W6fMXpspgLXdSWLsMs="', 'Yuraaaa@gmail.com','PATIENT');
-INSERT INTO users (name, password, mail, role) VALUES ( 'root','SBNJTRN+FjG7owHVrKtue7eqdM4RhdRWVl71HXN2d7I=', 'root@gmail.com','PATIENT');
+INSERT INTO users (name, password, mail, role) VALUES ( 'Yura_Vusatch','5LaQmD8HDa/VWnFDAPNiR4mmUXURcTuhh/FvB7yWlno=', 'Yuraaaa@gmail.com','PATIENT');
+INSERT INTO users (name, password, mail, role) VALUES ( 'root','SBNJTRN+FjG7owHVrKtue7eqdM4RhdRWVl71HXN2d7I=', 'root@gmail.com','DOCTOR');
