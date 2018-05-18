@@ -26,8 +26,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-	http
-	    .authorizeRequests()
+	http.authorizeRequests()
 	    .mvcMatchers(HttpMethod.GET , "/meeting/**").hasAnyAuthority(Role.DOCTOR.toString(),Role.PATIENT.toString())
 	    .mvcMatchers(HttpMethod.POST , "/meeting/**").hasAuthority(Role.DOCTOR.toString())
 	    .mvcMatchers(HttpMethod.PUT , "/meeting/**").hasAuthority(Role.DOCTOR.toString())
