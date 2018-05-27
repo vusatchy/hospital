@@ -30,7 +30,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 			.and()
 			.authorizeRequests()
 			.antMatchers(HttpMethod.POST,"/user").not().authenticated()
-	    	.anyRequest().authenticated()
+			.antMatchers(HttpMethod.GET , "/meeting/**").hasAnyAuthority(Role.DOCTOR.toString(),Role.PATIENT.toString())
+            .antMatchers(HttpMethod.POST , "/meeting/**").hasAuthority(Role.DOCTOR.toString())
+            .antMatchers(HttpMethod.PUT , "/meeting/**").hasAuthority(Role.DOCTOR.toString())
+            .antMatchers(HttpMethod.DELETE , "/meeting/**").hasAuthority(Role.DOCTOR.toString())
 	    	.and()
 	    	.formLogin();
 
