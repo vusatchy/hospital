@@ -21,18 +21,20 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(AuthenticationManagerBuilder auth)
 	throws Exception {
-	auth.authenticationProvider(authenticationProvider());
+		auth.authenticationProvider(authenticationProvider());
     }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-	http.authorizeRequests()
-	    .mvcMatchers(HttpMethod.GET , "/meeting/**").hasAnyAuthority(Role.DOCTOR.toString(),Role.PATIENT.toString())
-	    .mvcMatchers(HttpMethod.POST , "/meeting/**").hasAuthority(Role.DOCTOR.toString())
-	    .mvcMatchers(HttpMethod.PUT , "/meeting/**").hasAuthority(Role.DOCTOR.toString())
-	    .mvcMatchers(HttpMethod.DELETE , "/meeting/**").hasAuthority(Role.DOCTOR.toString())
-	    .and()
-	    .formLogin();
+	http.httpBasic()
+			.and()
+			.authorizeRequests()
+			.antMatchers(HttpMethod.POST,"/user").not().authenticated()
+	    	.anyRequest().authenticated()
+	    	.and()
+	    	.formLogin();
+
+		http.csrf().disable();
     }
 
     @Bean
