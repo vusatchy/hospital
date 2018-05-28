@@ -6,17 +6,16 @@ import com.hospital.core.authentication.ValidEmailAuthentication;
 import com.hospital.core.authentication.ValidPasswordAuthentication;
 import com.hospital.core.exceptions.InvalidEmailException;
 import com.hospital.core.exceptions.InvalidPasswordException;
-import com.hospital.core.exceptions.NameDoNotMatch;
-import com.hospital.core.exceptions.PassworDoNotMatch;
 import com.hospital.core.exceptions.UserAlreadyExistException;
 import com.hospital.core.model.Role;
 import com.hospital.core.model.User;
 import com.hospital.core.respository.UserRepository;
 import com.hospital.core.service.UserService;
 import com.hospital.core.util.EncryptionUtil;
-import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
 
 @Service
 public class UserServiceImp implements UserService {
@@ -24,21 +23,6 @@ public class UserServiceImp implements UserService {
     @Autowired
     private UserRepository userRepository;
 
-    //login
-    @Override
-    public User findUser(String name, String password) throws NameDoNotMatch, PassworDoNotMatch {
-	User user = userRepository.findByName(name);
-	if (user == null) {
-	    throw new NameDoNotMatch("User not found");
-	}
-	if (user.getPassword().equals(EncryptionUtil.encrypt(password))) {
-	    return user;
-	} else {
-	    throw new PassworDoNotMatch("Invalid password");
-	}
-    }
-
-    //register
     @Override
     public User saveUser(String name, String email, String password)
 	throws InvalidPasswordException, UserAlreadyExistException, InvalidEmailException {
